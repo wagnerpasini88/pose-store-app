@@ -7,192 +7,71 @@
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="Pose Store"/>
-<meta name="description" content="Assistente de moda e inteligência de mercado para a Pose Store"/>
 <link rel="manifest" href="manifest.json"/>
 <title>Pose Store — Assistente</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --pink: #D4537E;
-  --pink-light: #ED93B1;
-  --pink-dark: #993556;
-  --black: #0f0f0f;
-  --dark: #1a1a1a;
-  --surface: #222222;
-  --surface2: #2a2a2a;
-  --border: rgba(255,255,255,0.08);
-  --border-hover: rgba(212,83,126,0.4);
-  --text: #f0f0f0;
-  --text-muted: #888;
-  --text-hint: #555;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --safe-top: env(safe-area-inset-top, 0px);
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
+:root{
+  --pink:#D4537E;--pink-light:#ED93B1;--pink-dark:#993556;
+  --black:#0f0f0f;--dark:#1a1a1a;--surface:#222;--surface2:#2a2a2a;
+  --border:rgba(255,255,255,0.08);--border-hover:rgba(212,83,126,0.4);
+  --text:#f0f0f0;--text-muted:#888;--text-hint:#555;
+  --radius:12px;--radius-sm:8px;
+  --safe-top:env(safe-area-inset-top,0px);--safe-bottom:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;overscroll-behavior:none}
-body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;min-height:100vh;position:relative}
+body{display:flex;flex-direction:column;max-width:480px;margin:0 auto;min-height:100vh}
 
-/* HEADER */
-.header{
-  padding: calc(var(--safe-top) + 16px) 20px 16px;
-  background: var(--black);
-  border-bottom: 0.5px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;letter-spacing:0.02em}
+.header{padding:calc(var(--safe-top) + 16px) 20px 16px;background:var(--black);border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700}
 .logo span{color:var(--pink)}
 .header-badge{font-size:10px;background:var(--pink-dark);color:#FBEAF0;padding:3px 8px;border-radius:20px;font-weight:500;letter-spacing:0.05em}
 
-/* TABS */
-.tabs{
-  display: flex;
-  padding: 12px 20px 0;
-  gap: 6px;
-  background: var(--black);
-  position: sticky;
-  top: calc(var(--safe-top) + 57px);
-  z-index: 99;
-  border-bottom: 0.5px solid var(--border);
-}
-.tab{
-  flex: 1;
-  padding: 9px 4px;
-  border: none;
-  background: transparent;
-  color: var(--text-muted);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  cursor: pointer;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s;
-  white-space: nowrap;
-  text-align: center;
-}
+.tabs{display:flex;padding:12px 20px 0;gap:6px;background:var(--black);position:sticky;top:calc(var(--safe-top) + 57px);z-index:99;border-bottom:0.5px solid var(--border)}
+.tab{flex:1;padding:9px 4px;border:none;background:transparent;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap;text-align:center}
 .tab.active{color:var(--pink);border-bottom-color:var(--pink);font-weight:500}
 
-/* CONTENT */
 .content{flex:1;overflow-y:auto;padding:20px 20px calc(var(--safe-bottom) + 20px)}
 .section{display:none}.section.active{display:block}
 
-/* FORM ELEMENTS */
 label{font-size:12px;color:var(--text-muted);display:block;margin-bottom:6px;letter-spacing:0.04em;text-transform:uppercase}
-select,input,textarea{
-  width:100%;
-  background:var(--surface);
-  border:0.5px solid var(--border);
-  border-radius:var(--radius-sm);
-  padding:12px 14px;
-  color:var(--text);
-  font-family:'DM Sans',sans-serif;
-  font-size:15px;
-  outline:none;
-  transition:border-color 0.2s;
-  -webkit-appearance:none;
-  appearance:none;
-}
+select,input,textarea{width:100%;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;appearance:none}
 select:focus,input:focus,textarea:focus{border-color:var(--border-hover)}
 textarea{resize:none;min-height:90px;line-height:1.5}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 .field{margin-bottom:16px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 
-/* CHIPS */
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
-.chip{
-  padding:7px 14px;
-  border-radius:20px;
-  border:0.5px solid var(--border);
-  background:transparent;
-  color:var(--text-muted);
-  font-family:'DM Sans',sans-serif;
-  font-size:13px;
-  cursor:pointer;
-  transition:all 0.15s;
-}
-.chip.selected{
-  background:rgba(212,83,126,0.15);
-  border-color:var(--pink);
-  color:var(--pink-light);
-  font-weight:500;
-}
+.chip{padding:7px 14px;border-radius:20px;border:0.5px solid var(--border);background:transparent;color:var(--text-muted);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;transition:all 0.15s}
+.chip.selected{background:rgba(212,83,126,0.15);border-color:var(--pink);color:var(--pink-light);font-weight:500}
 
-/* BUTTONS */
-.btn{
-  padding:14px 20px;
-  border-radius:var(--radius);
-  border:none;
-  background:var(--pink);
-  color:#fff;
-  font-family:'DM Sans',sans-serif;
-  font-size:15px;
-  font-weight:500;
-  cursor:pointer;
-  transition:all 0.2s;
-  width:100%;
-  letter-spacing:0.01em;
-}
+.btn{padding:14px 20px;border-radius:var(--radius);border:none;background:var(--pink);color:#fff;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.2s;width:100%;letter-spacing:0.01em}
 .btn:active{transform:scale(0.98);background:var(--pink-dark)}
 .btn:disabled{opacity:0.4;cursor:not-allowed;transform:none}
-.btn-ghost{
-  background:transparent;
-  border:0.5px solid var(--border);
-  color:var(--text-muted);
-  padding:10px 16px;
-  font-size:13px;
-  width:auto;
-}
+.btn-ghost{background:transparent;border:0.5px solid var(--border);color:var(--text-muted);padding:10px 16px;font-size:13px;width:auto}
 .btn-ghost:active{background:var(--surface)}
 .btn-row{display:flex;gap:8px;align-items:center;margin-top:4px}
 
-/* RESULT */
 .result-wrap{margin-top:16px;animation:fadeIn 0.3s ease}
 .result-label{font-size:11px;color:var(--text-hint);margin-bottom:8px;display:flex;align-items:center;gap:6px;text-transform:uppercase;letter-spacing:0.06em}
-.dot{width:6px;height:6px;border-radius:50%;background:var(--pink);animation:pulse 1.5s infinite}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--pink);flex-shrink:0}
+.dot.pulse{animation:pulse 1.2s infinite}
 .dot.done{animation:none;background:var(--text-hint)}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.result-box{
-  background:var(--surface);
-  border:0.5px solid var(--border);
-  border-radius:var(--radius);
-  padding:16px;
-  font-size:14px;
-  line-height:1.75;
-  color:var(--text);
-  white-space:pre-wrap;
-  word-break:break-word;
-}
+.dot.error{animation:none;background:#E24B4A}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.2}}
+.result-box{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px;font-size:14px;line-height:1.75;color:var(--text);white-space:pre-wrap;word-break:break-word}
+.result-box.err{border-color:rgba(226,75,74,0.3);color:#F09595;font-size:13px}
 
-/* INFO BOX */
-.info-box{
-  background:rgba(212,83,126,0.08);
-  border:0.5px solid rgba(212,83,126,0.25);
-  border-radius:var(--radius-sm);
-  padding:12px 14px;
-  font-size:13px;
-  color:var(--pink-light);
-  margin-top:12px;
-  line-height:1.6;
-  display:none;
-}
+.check-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer}
+.check-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--pink);cursor:pointer}
+.check-row span{font-size:13px;color:var(--text-muted)}
 
-/* HISTORY */
-.hist-card{
-  background:var(--surface);
-  border:0.5px solid var(--border);
-  border-radius:var(--radius);
-  padding:14px 16px;
-  margin-bottom:10px;
-  cursor:pointer;
-  transition:border-color 0.15s;
-}
+.section-head{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--text);margin-bottom:20px;padding-bottom:12px;border-bottom:0.5px solid var(--border)}
+.section-head span{color:var(--pink)}
+
+.hist-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;cursor:pointer;transition:border-color 0.15s}
 .hist-card:active{border-color:var(--border-hover)}
 .hist-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .hist-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px}
@@ -204,43 +83,12 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .badge-blue{background:rgba(55,138,221,0.15);color:#85B7EB}
 .badge-date{background:transparent;color:var(--text-hint);font-size:11px}
 .empty-state{text-align:center;padding:3rem 1rem;color:var(--text-hint);font-size:14px;line-height:1.8}
-.empty-icon{font-size:32px;margin-bottom:12px;opacity:0.4}
 
-/* SECTION TITLE */
-.section-head{
-  font-family:'Playfair Display',serif;
-  font-size:18px;
-  font-weight:400;
-  color:var(--text);
-  margin-bottom:20px;
-  padding-bottom:12px;
-  border-bottom:0.5px solid var(--border);
-}
-.section-head span{color:var(--pink)}
-
-/* DIVIDER */
-.divider{border:none;border-top:0.5px solid var(--border);margin:16px 0}
-
-/* CHECKBOX */
-.check-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;cursor:pointer}
-.check-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--pink);cursor:pointer}
-.check-row span{font-size:13px;color:var(--text-muted)}
-
-/* ANIMATIONS */
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-
-/* COPY TOAST */
-.toast{
-  position:fixed;bottom:calc(var(--safe-bottom) + 20px);left:50%;transform:translateX(-50%) translateY(10px);
-  background:var(--surface2);border:0.5px solid var(--border);
-  padding:10px 20px;border-radius:20px;font-size:13px;color:var(--text);
-  opacity:0;transition:all 0.25s;pointer-events:none;z-index:999;white-space:nowrap;
-}
+.toast{position:fixed;bottom:calc(var(--safe-bottom) + 20px);left:50%;transform:translateX(-50%) translateY(10px);background:var(--surface2);border:0.5px solid var(--border);padding:10px 20px;border-radius:20px;font-size:13px;color:var(--text);opacity:0;transition:all 0.25s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* SCROLLBAR */
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 ::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:var(--surface2);border-radius:2px}
 </style>
 </head>
@@ -259,7 +107,6 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 
 <div class="content">
 
-  <!-- ABA COLEÇÃO -->
   <div id="tab-colecao" class="section active">
     <div class="section-head">Analisador de <span>coleção</span></div>
     <div class="row">
@@ -287,7 +134,7 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
     </div>
     <div class="field">
       <label>Descreva a peça</label>
-      <textarea id="descricao-peca" placeholder="Ex: sandália Melissa Possession preta translúcida, tiras finas, salto bloco 5cm, verão 2025..."></textarea>
+      <textarea id="descricao-peca" placeholder="Ex: sandália Melissa Possession preta translúcida, tiras finas, salto bloco 5cm..."></textarea>
     </div>
     <div class="field">
       <label>Tom</label>
@@ -300,20 +147,18 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       </div>
     </div>
     <div class="btn-row">
-      <button class="btn" id="btn-col" onclick="enviarColecao()">Gerar conteúdo ↗</button>
+      <button class="btn" id="btn-col" onclick="gerarColecao()">Gerar conteúdo ↗</button>
       <button class="btn btn-ghost" onclick="copiar('rb-colecao')">Copiar</button>
     </div>
-    <div class="info-box" id="info-col"></div>
     <div id="wrap-colecao" class="result-wrap" style="display:none">
       <div class="result-label">
-        <span class="dot done" id="dot-col"></span>
-        <span id="lbl-col">Resultado</span>
+        <span class="dot" id="dot-col"></span>
+        <span id="lbl-col">Gerando...</span>
       </div>
       <div class="result-box" id="rb-colecao"></div>
     </div>
   </div>
 
-  <!-- ABA RADAR -->
   <div id="tab-radar" class="section">
     <div class="section-head">Radar <span>Melissa</span></div>
     <div class="field">
@@ -341,20 +186,18 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
       <span>Busca na web em tempo real</span>
     </label>
     <div class="btn-row">
-      <button class="btn" id="btn-rad" onclick="enviarRadar()">Analisar mercado ↗</button>
+      <button class="btn" id="btn-rad" onclick="gerarRadar()">Analisar mercado ↗</button>
       <button class="btn btn-ghost" onclick="copiar('rb-radar')">Copiar</button>
     </div>
-    <div class="info-box" id="info-rad"></div>
     <div id="wrap-radar" class="result-wrap" style="display:none">
       <div class="result-label">
-        <span class="dot done" id="dot-rad"></span>
-        <span id="lbl-rad">Resultado</span>
+        <span class="dot" id="dot-rad"></span>
+        <span id="lbl-rad">Analisando...</span>
       </div>
       <div class="result-box" id="rb-radar"></div>
     </div>
   </div>
 
-  <!-- ABA HISTÓRICO -->
   <div id="tab-historico" class="section">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
       <div class="section-head" style="margin:0;border:none;padding:0">Histórico</div>
@@ -368,9 +211,8 @@ select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 <div class="toast" id="toast">Copiado!</div>
 
 <script>
-const SK='pose_pwa_v1';
+const SK='pose_pwa_v2';
 
-// REGISTRO DO SERVICE WORKER
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
@@ -386,19 +228,23 @@ function switchTab(t){
 function toggleChip(el){el.classList.toggle('selected');}
 function getChips(id){return[...document.querySelectorAll('#'+id+' .chip.selected')].map(c=>c.textContent).join(', ');}
 
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg||'Copiado!';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2200);
+}
+
 function copiar(id){
   const el=document.getElementById(id);
-  if(!el||!el.textContent.trim()) return;
-  navigator.clipboard.writeText(el.textContent.trim()).then(()=>{
-    const t=document.getElementById('toast');
-    t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'),2000);
-  });
+  if(!el||!el.textContent.trim())return;
+  navigator.clipboard.writeText(el.textContent.trim()).then(()=>showToast('Copiado!'));
 }
 
 function salvar(tipo,titulo,resultado,badge){
   let h=JSON.parse(localStorage.getItem(SK)||'[]');
-  h.unshift({id:Date.now(),tipo,titulo,badge,resultado,data:new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})});
+  h.unshift({id:Date.now(),tipo,titulo,badge,resultado,
+    data:new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})});
   if(h.length>40)h=h.slice(0,40);
   localStorage.setItem(SK,JSON.stringify(h));
 }
@@ -407,7 +253,7 @@ function renderHist(){
   const h=JSON.parse(localStorage.getItem(SK)||'[]');
   const lista=document.getElementById('hist-lista');
   if(!h.length){
-    lista.innerHTML='<div class="empty-state"><div class="empty-icon">◎</div>Nenhuma análise salva ainda.<br>Use as abas acima para gerar conteúdo.</div>';
+    lista.innerHTML='<div class="empty-state">Nenhuma análise salva ainda.<br>Use as abas acima para gerar conteúdo.</div>';
     return;
   }
   lista.innerHTML=h.map(x=>`
@@ -427,40 +273,53 @@ function renderHist(){
 
 function toggleDet(id){
   const el=document.getElementById('det-'+id);
-  if(el) el.style.display=el.style.display==='block'?'none':'block';
+  if(el)el.style.display=el.style.display==='block'?'none':'block';
 }
 
 function limparHistorico(){
   if(confirm('Limpar todo o histórico?')){localStorage.removeItem(SK);renderHist();}
 }
 
-// GERA TEXTO COM CLAUDE (via prompt externo)
-// Nesta versão PWA os resultados vêm do Claude no chat.
-// A função monta o prompt e mostra instrução ao usuário.
-
-function mostrarInfo(id, msg){
-  const el=document.getElementById(id);
-  el.style.display='block';
-  el.textContent=msg;
-}
-
-function setResultado(wrapId, dotId, lblId, rbId, texto, labelText){
+function setUI(wrapId,dotId,lblId,rbId,loading,texto,labelTxt,isErr){
   const wrap=document.getElementById(wrapId);
   const dot=document.getElementById(dotId);
   const lbl=document.getElementById(lblId);
   const rb=document.getElementById(rbId);
   wrap.style.display='block';
-  dot.classList.add('done');
-  lbl.textContent=labelText||'Resultado';
-  rb.textContent=texto;
+  if(loading){
+    dot.className='dot pulse';
+    lbl.textContent=labelTxt||'Gerando...';
+    rb.className='result-box';
+    rb.textContent='';
+  } else {
+    dot.className='dot '+(isErr?'error':'done');
+    lbl.textContent=labelTxt||'Resultado';
+    rb.className='result-box'+(isErr?' err':'');
+    rb.textContent=texto;
+  }
 }
 
-// INTERCEPT: verifica se veio resultado do Claude via URL hash
-function checkUrlResult(){
-  // Suporte futuro para deep link
+async function callProxy(system, userMsg, useWeb){
+  const body={
+    system,
+    messages:[{role:'user',content:userMsg}]
+  };
+  if(useWeb) body.tools=[{type:'web_search_20250305',name:'web_search'}];
+
+  const res=await fetch('/.netlify/functions/claude',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(body)
+  });
+  if(!res.ok) throw new Error('Erro HTTP '+res.status);
+  const data=await res.json();
+  if(data.error) throw new Error(data.error.message||JSON.stringify(data.error));
+  const txt=data.content?.filter(b=>b.type==='text').map(b=>b.text).join('')||'';
+  if(!txt) throw new Error('Resposta vazia. Tente novamente.');
+  return txt;
 }
 
-function enviarColecao(){
+async function gerarColecao(){
   const marca=document.getElementById('marca').value;
   const desc=document.getElementById('descricao-peca').value.trim();
   if(!desc){alert('Descreva a peça antes de gerar.');return;}
@@ -468,55 +327,45 @@ function enviarColecao(){
   const tipo=sel.value;
   const tipoLabel=sel.options[sel.selectedIndex].text;
   const tom=getChips('chips-tom');
+  const btn=document.getElementById('btn-col');
 
-  const prompt=`[POSE_STORE_COLECAO]\nMarca: ${marca}\nPeça: ${desc}\nConteúdo: ${tipo}\nTom: ${tom}`;
+  btn.disabled=true;
+  setUI('wrap-colecao','dot-col','lbl-col','rb-colecao',true,'','Gerando conteúdo...',false);
 
-  // Salva rascunho no histórico
-  salvar('colecao',marca+' — '+tipoLabel,'(aguardando resposta)',marca);
+  const system='Você é especialista em marketing de moda para varejo multimarca brasileiro. DLZ é moda feminina contemporânea. Visual Jeans é jeanswear. Rala Bela é moda jovem feminina. Responda em português do Brasil, criativo, direto, sem markdown excessivo.';
+  const prompt=`Pose Store — loja multimarca em Cruz Alta, RS.\nMarca: ${marca}\nPeça: ${desc}\nConteúdo: ${tipo}\nTom: ${tom}\n\nGere o conteúdo solicitado com qualidade profissional.`;
 
-  mostrarInfo('info-col','Prompt copiado! Cole no Claude para receber o conteúdo.');
-
-  navigator.clipboard.writeText(prompt).then(()=>{
-    const t=document.getElementById('toast');
-    t.textContent='Prompt copiado!';
-    t.classList.add('show');
-    setTimeout(()=>{t.classList.remove('show');t.textContent='Copiado!';},2500);
-  });
+  try{
+    const result=await callProxy(system,prompt,false);
+    setUI('wrap-colecao','dot-col','lbl-col','rb-colecao',false,result,'Pronto',false);
+    salvar('colecao',marca+' — '+tipoLabel,result,marca);
+  } catch(e){
+    setUI('wrap-colecao','dot-col','lbl-col','rb-colecao',false,'Erro: '+e.message,'Falhou',true);
+  }
+  btn.disabled=false;
 }
 
-function enviarRadar(){
+async function gerarRadar(){
   const topicos=getChips('chips-radar');
   const concorrentes=document.getElementById('concorrentes').value.trim();
   const pergunta=document.getElementById('radar-pergunta').value.trim();
   const useWeb=document.getElementById('usar-web').checked;
+  const btn=document.getElementById('btn-rad');
 
-  const prompt=`[POSE_STORE_RADAR]\nTópicos: ${topicos}${concorrentes?'\nContexto/concorrentes: '+concorrentes:''}${pergunta?'\nPergunta: '+pergunta:''}\nBusca web: ${useWeb?'sim':'não'}`;
+  btn.disabled=true;
+  setUI('wrap-radar','dot-rad','lbl-rad','rb-radar',true,'',useWeb?'Buscando na web...':'Analisando...',false);
 
-  salvar('radar','Radar Melissa — '+topicos.split(',')[0].trim(),'(aguardando resposta)',useWeb?'Web+IA':'IA');
-  mostrarInfo('info-rad','Prompt copiado! Cole no Claude para receber a análise.');
+  const system='Você é consultor de inteligência de mercado especialista em Melissa e varejo de moda no Brasil. Use linguagem prática, direta. Responda em português do Brasil.';
+  const prompt=`Análise Melissa para revendedor em Cruz Alta, RS.\nTópicos: ${topicos}${concorrentes?'\nContexto: '+concorrentes:''}${pergunta?'\nPergunta: '+pergunta:''}\n\n${useWeb?'Pesquise na web e então responda com:\n':'Responda com:\n'}1. Modelos mais vendidos (nomes reais)\n2. Faixa de preço dos revendedores\n3. Argumentos de venda eficazes\n4. Dicas de visual merchandising\n5. Como se destacar da concorrência`;
 
-  navigator.clipboard.writeText(prompt).then(()=>{
-    const t=document.getElementById('toast');
-    t.textContent='Prompt copiado!';
-    t.classList.add('show');
-    setTimeout(()=>{t.classList.remove('show');t.textContent='Copiado!';},2500);
-  });
-}
-
-// Salvar resultado manualmente
-function salvarResultadoManual(tipo){
-  const texto=prompt('Cole aqui o resultado do Claude:');
-  if(!texto)return;
-  if(tipo==='col'){
-    setResultado('wrap-colecao','dot-col','lbl-col','rb-colecao',texto,'Resultado salvo');
-    const marca=document.getElementById('marca').value;
-    const sel=document.getElementById('tipo-conteudo');
-    salvar('colecao',marca+' — '+sel.options[sel.selectedIndex].text,texto,marca);
-  } else {
-    setResultado('wrap-radar','dot-rad','lbl-rad','rb-radar',texto,'Resultado salvo');
-    const topicos=getChips('chips-radar');
-    salvar('radar','Radar Melissa — '+topicos.split(',')[0],texto,'Salvo');
+  try{
+    const result=await callProxy(system,prompt,useWeb);
+    setUI('wrap-radar','dot-rad','lbl-rad','rb-radar',false,result,useWeb?'Resultado com dados da web':'Resultado',false);
+    salvar('radar','Radar Melissa — '+topicos.split(',')[0].trim(),result,useWeb?'Web+IA':'IA');
+  } catch(e){
+    setUI('wrap-radar','dot-rad','lbl-rad','rb-radar',false,'Erro: '+e.message,'Falhou',true);
   }
+  btn.disabled=false;
 }
 </script>
 </body>
